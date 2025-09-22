@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Студия 35 кв/м, ул. Пушкина 35 — Хабаровск</title>
+  <meta name="description" content="Студия 35 кв/м на ул. Пушкина 35, Хабаровск. Фото, описание, карта, отзывы." />
+  <style>
+    :root{
+      --base:62.5%;
+      --ff: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      --fs-12:1.2rem; --fs-13:1.3rem; --fs-14:1.4rem; --fs-16:1.6rem; --fs-18:1.8rem; --fs-22:2.2rem; --fs-26:2.6rem;
+      --bg:#f6f7f8; --paper:#fff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+      --brand:#2f6f5e; --brand-2:#1f8a70; --accent:#0ea5e9; --success:#22c55e; --danger:#ef4444;
+      --radius:1.2rem; --shadow-1:0 .2rem .6rem rgba(15,23,42,.06); --shadow-2:0 .6rem 1.6rem rgba(15,23,42,.08);
+    }
+    html{font-size:var(--base)}
+    body{margin:0; font:400 var(--fs-16)/1.55 var(--ff); color:var(--ink); background:var(--bg)}
+    a{color:inherit; text-decoration:none}
+    .container{width:min(110rem, 100% - 3.2rem); margin:0 auto}
+
+    /* header (короткий) */
+    .topbar{background:var(--paper); border-bottom:.1rem solid var(--line); position:sticky; top:0; z-index:40}
+    .topbar__row{display:grid; grid-template-columns:auto 1fr auto; gap:1.2rem; align-items:center; padding:1.2rem 0}
+    .logo{display:flex; align-items:center; gap:.8rem; font-weight:700}
+    .logo__mark{width:2.4rem; height:2.4rem; display:grid; place-items:center; background:var(--brand); color:#fff; border-radius:.6rem}
+    .actionbar{display:flex; gap:.6rem}
+    .btn{height:3.6rem; padding:0 1.2rem; border:.1rem solid var(--line); border-radius:.8rem; background:#fff; font-weight:600}
+    .btn--primary{background:var(--brand-2); border-color:var(--brand-2); color:#fff}
+
+    /* breadcrumbs + title row */
+    .crumbs{font-size:var(--fs-13); color:var(--muted); margin:1.2rem 0}
+    .title-row{display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:flex-start}
+    h1{font-size:var(--fs-26); margin:.2rem 0}
+    .badges{display:flex; gap:.6rem; align-items:center; font-size:var(--fs-12)}
+    .badge{background:var(--success); color:#fff; padding:.3rem .6rem; border-radius:.6rem}
+    .stats{color:var(--muted)}
+    .icons{display:flex; gap:.4rem}
+    .iconbtn{width:2.8rem; height:2.8rem; border-radius:.6rem; border:.1rem solid var(--line); background:#fff; display:grid; place-items:center; cursor:pointer}
+    .iconbtn[aria-pressed="true"]{color:var(--danger); border-color:var(--danger)}
+
+    /* gallery + side */
+    .layout{display:grid; grid-template-columns:36rem 1fr 28rem; gap:1.2rem}
+    .gallery{background:var(--paper); border:.1rem solid var(--line); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow-1)}
+    .g-main{aspect-ratio:16/10; border-radius:.8rem; background:#ddd url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="%23f3f4f6"/><stop offset="1" stop-color="%23e5e7eb"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>') center/cover no-repeat}
+    .g-thumbs{display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem; margin-top:.8rem}
+    .g-thumbs div{aspect-ratio:4/3; border-radius:.6rem; background:#e5e7eb; cursor:pointer}
+    .info{background:var(--paper); border:.1rem solid var(--line); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow-1)}
+    .author{display:grid; grid-template-columns:3.6rem 1fr; gap:.8rem; align-items:center}
+    .avatar{width:3.6rem; height:3.6rem; border-radius:50%; background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+    .rating{font-size:var(--fs-13); color:#f59e0b}
+    .phone{display:grid; gap:.6rem; margin-top:.8rem}
+    .price{font-weight:800; font-size:var(--fs-22); margin-top:.6rem}
+    .chips{display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.6rem}
+    .chip{font-size:var(--fs-12); background:#eef2f7; border:.1rem solid #e2e8f0; padding:.2rem .6rem; border-radius:.6rem}
+
+    /* description + map */
+    .paper{background:var(--paper); border:.1rem solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-1); padding:1.2rem}
+    .paper h3{margin:0 0 .8rem 0; font-size:var(--fs-18)}
+    .desc-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem}
+    .desc-item{background:#f8fafc; border:.1rem solid #e2e8f0; border-radius:.8rem; padding:.8rem}
+    .map{height:26rem; border-radius:.8rem; background:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500"><rect width="100%" height="100%" fill="%23e5e7eb"/><circle cx="480" cy="220" r="12" fill="%231f8a70"/></svg>')
+      center/cover no-repeat; border:.1rem solid var(--line)
+    }
+
+    /* comments */
+    .comment{border:.1rem solid var(--line); border-radius:1rem; padding:1rem; background:#fff}
+    .c-head{display:grid; grid-template-columns:3.2rem 1fr auto; gap:.8rem; align-items:center}
+    .c-ava{width:3.2rem; height:3.2rem; border-radius:50%; background:linear-gradient(135deg,#fde68a,#f59e0b)}
+    .c-name{font-weight:700}
+    .stars{color:#f59e0b}
+    .c-body{color:var(--muted); font-size:var(--fs-14); margin-top:.4rem}
+    .cta-banner{
+      display:grid; grid-template-columns:1fr auto; align-items:center; gap:1.2rem;
+      background:linear-gradient(135deg,#0d7a66,#1f8a70); color:#fff; border-radius:1.2rem; padding:1.6rem; box-shadow:var(--shadow-2)
+    }
+    .cards{display:grid; grid-template-columns:repeat(5,1fr); gap:1rem}
+    .card{background:#fff; border:.1rem solid var(--line); border-radius:1rem; overflow:hidden}
+    .thumb{aspect-ratio:4/3; background:#e5e7eb}
+    .card .body{padding:.8rem}
+    .small{color:var(--muted); font-size:var(--fs-13)}
+    footer{margin:2rem 0 3rem}
+    .foot{color:var(--muted); font-size:var(--fs-13); text-align:center}
+
+    /* responsive */
+    @media (max-width: 1100px){
+      .layout{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 700px){
+      .desc-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 520px){
+      .cards{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__row">
+      <a class="logo" href="index.html">
+        <span class="logo__mark">MW</span>
+        <span>MagicWorlds <small style="color:#6b7280;font-weight:600">Путешествия</small></span>
+      </a>
+      <div></div>
+      <div class="actionbar">
+        <button class="btn">Вопросы-ответы</button>
+        <button class="btn btn--primary">Подать объявление</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Аренда</a> · <a href="#">Съём, посуточно</a> · <span>Студия</span>
+    </nav>
+
+    <div class="title-row">
+      <div>
+        <h1>Студия 35 кв/м ул. Пушкина 35, Хабаровск</h1>
+        <div class="badges">
+          <span class="badge">Платное</span>
+          <span class="stats">· 2 дня 5 часов · ID 254565444</span>
+        </div>
+      </div>
+      <div class="icons">
+        <button class="iconbtn fav" aria-pressed="false" title="В избранное">❤️</button>
+        <button class="iconbtn" title="Поделиться">🔗</button>
+      </div>
+    </div>
+
+    <section class="layout" style="margin-top:1rem">
+      <!-- gallery -->
+      <div class="gallery">
+        <div class="g-main" id="gMain" aria-label="Большое фото"></div>
+        <div class="g-thumbs" id="gThumbs" aria-label="Миниатюры"></div>
+      </div>
+
+      <!-- description column -->
+      <section>
+        <div class="info">
+          <div class="author">
+            <div class="avatar" aria-hidden="true"></div>
+            <div>
+              <div style="font-weight:700">Александр Орова</div>
+              <div class="rating">★★★★☆ 4.9 · На сайте с 01.12.2019</div>
+              <div class="small">Обновлено: 20.08.2025 · Рекламодатель: собственник</div>
+            </div>
+          </div>
+          <div class="phone">
+            <button class="btn btn--primary" id="phoneBtn">+7 926-756-**-** — Показать</button>
+            <div class="price">≈ 35 000₽/м</div>
+            <div class="chips">
+              <span class="chip">Студия</span>
+              <span class="chip">35 кв/м</span>
+              <span class="chip">📍 Россия, Хабаровск</span>
+              <span class="chip">Wi-Fi</span>
+              <span class="chip">Кондиционер</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper" style="margin-top:1rem">
+          <h3>Описание</h3>
+          <div class="desc-grid" role="list">
+            <div class="desc-item" role="listitem"><strong>Улица:</strong> Пушкина 35</div>
+            <div class="desc-item" role="listitem"><strong>Комнаты:</strong> студия</div>
+            <div class="desc-item" role="listitem"><strong>Этаж:</strong> 3</div>
+            <div class="desc-item" role="listitem"><strong>Площадь:</strong> 35 м²</div>
+          </div>
+          <p class="small" style="margin-top:.8rem">
+            Аккуратная студия в центре. Полностью укомплектована техникой и мебелью. Рядом парк, остановка, магазины.
+          </p>
+        </div>
+
+        <div class="paper" style="margin-top:1rem">
+          <h3>Объявление на карте</h3>
+          <div class="map" role="img" aria-label="Карта окрестностей"></div>
+        </div>
+
+        <div class="paper" style="margin-top:1rem">
+          <h3>Комментарии</h3>
+          <article class="comment">
+            <div class="c-head">
+              <div class="c-ava"></div>
+              <div>
+                <div class="c-name">Михаил · 21.08.2025</div>
+                <div class="stars">★★★★★</div>
+              </div>
+              <div class="small">Проверенный гость</div>
+            </div>
+            <div class="c-body">Быстро заселили, чисто, фото соответствуют. До центра пешком 10–12 минут.</div>
+          </article>
+          <article class="comment" style="margin-top:.8rem">
+            <div class="c-head">
+              <div class="c-ava" style="background:linear-gradient(135deg,#bae6fd,#60a5fa)"></div>
+              <div>
+                <div class="c-name">Мария · 23.08.2025</div>
+                <div class="stars">★★★★☆</div>
+              </div>
+              <div class="small">Проверенный гость</div>
+            </div>
+            <div class="c-body">Удобная локация, тихий дом. Маленькая кухня, но для студии это нормально.</div>
+          </article>
+          <div style="margin-top:1rem">
+            <button class="btn">Оставить комментарий</button>
+          </div>
+        </div>
+
+        <section class="cta-banner" style="margin-top:1rem" aria-label="Разместить объявление">
+          <div>
+            <div style="font-weight:800; font-size:var(--fs-18)">Как разместить новое объявление в каталоге</div>
+            <div class="small" style="color:#d1fae5">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</div>
+          </div>
+          <button class="btn">Подробнее</button>
+        </section>
+
+        <section class="paper" style="margin-top:1rem">
+          <h3>Другие объявления автора</h3>
+          <div class="cards" id="other"></div>
+        </section>
+      </section>
+
+      <!-- right column (контейнер для виджетов) -->
+      <aside class="info" style="height:max-content">
+        <div style="font-weight:700">Панель действий</div>
+        <ul class="small" style="margin:.6rem 0 0 1rem; line-height:1.9">
+          <li>Пожаловаться</li>
+          <li>Печать</li>
+          <li>Добавить заметку</li>
+          <li>Поделиться</li>
+        </ul>
+      </aside>
+    </section>
+
+    <footer class="foot">Copyright © 2025 by MagicWorlds</footer>
+  </main>
+
+  <script>
+    /* thumbs demo (имитация 1/5 как в макете) */
+    const thumbs = Array.from({length:8}).map((_,i)=>({
+      bg: `linear-gradient(135deg, ${i%2? '#e5e7eb':'#eef2f7'}, ${i%3? '#d1d5db':'#e5e7eb'})`
+    }));
+    const gThumbs = document.getElementById('gThumbs');
+    const gMain = document.getElementById('gMain');
+
+    thumbs.forEach((t,idx)=>{
+      const d = document.createElement('div');
+      d.style.background = t.bg;
+      d.title = `Фото ${idx+1}`;
+      d.addEventListener('click', ()=> gMain.style.background = t.bg);
+      gThumbs.appendChild(d);
+    });
+
+    document.addEventListener('click', (e)=>{
+      const fav = e.target.closest('.fav');
+      if(fav){ fav.setAttribute('aria-pressed', String(fav.getAttribute('aria-pressed')!=='true')); }
+    });
+
+    const phoneBtn = document.getElementById('phoneBtn');
+    phoneBtn.addEventListener('click', ()=>{
+      phoneBtn.textContent = '+7 926-756-44-11';
+    });
+
+    /* другие объявления автора */
+    const other = document.getElementById('other');
+    const card = (i)=>`
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="body">
+          <div style="font-weight:700">Сдам в аренду студию</div>
+          <div class="small">Россия, Хабаровск</div>
+          <div class="small">Студия 35 кв/м · ≈ 35 000₽/м</div>
+        </div>
+      </article>`;
+    other.innerHTML = Array.from({length:5}).map((_,i)=>card(i)).join('');
+  </script>
+</body>
+</html>
